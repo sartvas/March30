@@ -9,6 +9,9 @@ const personalMovieDB = {
         }
     },
     movies: {},
+    actors: {},
+    privat: false,
+    genres: [],
     rememberMyFilms: function () {
         for (let i = 0; i < 2; i++) {
             const a = prompt('Назовите один из последних просмотренных фильмов?'),
@@ -21,7 +24,6 @@ const personalMovieDB = {
             }
         } 
     },
-    actors: {},
     detectPersonalLevel: function () {
         if (personalMovieDB.count < 10 ) {
             console.log('Просмотрено довольно мало фильмов');
@@ -33,19 +35,24 @@ const personalMovieDB = {
             console.log('error');
         }
     },
-    writeYoueGeneres: function () {
-        for (let i = 0; i <= 3; i++) {
-            personalMovieDB.genres[i] = prompt (`Ваш любимый жанр по номером ${i+1}`);
-            let counts1 = 0;
-            personalMovieDB.genres.forEach((personalMovieDB.genres[i]) => {
-                console.log(element);
-            })
-        },
-    },
-    privat: false,
     showMyDB: function (hidden) {
         if (!hidden) {
             console.log('Главный объект программы');
+        }
+    },
+    writeYourGenres: function () {
+        for (let i = 1; i < 2; i++) {
+            let genre = prompt(`Ваш любимый жанр под номером ${i}`);
+            if (genre === '' || genre == null) {
+                console.log('Вы ввели некорректные данные или не ввели их вовсе');
+                i--;
+            } else {
+                personalMovieDB.genres[i - 1] = genre;
+            }
+
+            personalMovieDB.genres.forEach((item, i) => {
+                console.log(`Любимый жанр ${i + 1} - это ${item}`);
+            });
         }
     },
     togleVisibleMyDB: function (priv) {
@@ -57,11 +64,4 @@ const personalMovieDB = {
     }
 };
 
-personalMovieDB.count();
-personalMovieDB.writeYoueGeneres();
-personalMovieDB.rememberMyFilms();
-personalMovieDB.detectPersonalLevel();
-personalMovieDB.showMyDB();
-personalMovieDB.togleVisibleMyDB(personalMovieDB.privat);
-console.log(personalMovieDB.privat);
 
